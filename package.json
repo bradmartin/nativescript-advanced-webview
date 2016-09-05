@@ -1,0 +1,49 @@
+{
+    "name": "nativescript-advanced-webview",
+    "version": "1.0.0",
+    "description": "An advanced webview using Chrome CustomTabs on Android (iOS support coming soon).",
+    "main": "advanced-webview.js",
+    "typings": "index.d.ts",
+    "nativescript": {
+        "platforms": {
+            "android": "2.0.0"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bradmartin/nativescript-advanced-webview.git"
+    },
+    "keywords": [
+        "NativeScript",
+        "nativescript-advanced-webview",
+        "Chrome Custom Tabs",
+        "TypeScript",
+        "BradMartin",
+        "Thorum",
+        "Android"
+    ],
+    "author": {
+        "name": "Brad Martin",
+        "email": "bradwaynemartin@gmail.com"
+    },
+    "license": {
+        "type": "MIT",
+        "url": "https://github.com/bradmartin/nativescript-advanced-webview/blob/master/LICENSE"
+    },
+    "bugs": {
+        "url": "https://github.com/bradmartin/nativescript-advanced-webview/issues"
+    },
+    "homepage": "https://github.com/bradmartin/-advanced-webview",
+    "readmeFilename": "README.md",
+    "scripts": {
+        "build": "tsc",
+        "demo.ios": "npm run preparedemo && cd demo && tns emulate ios",
+        "demo.android": "npm run preparedemo && cd demo && tns run android",
+        "debug.ios": "npm run preparedemo && cd demo && tns debug ios --emulator",
+        "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
+        "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-advanced-webview && tns plugin add .. && tns install",
+        "setup": "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
+        "prepublish": "tsc",
+        "start": "npm run demo.android"
+    }
+}

@@ -1,0 +1,12 @@
+//default elements
+android {
+    productFlavors {
+        "nativescriptadvancedwebview" {
+            dimension "nativescriptadvancedwebview"
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:customtabs:23.3.0'
+}
