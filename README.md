@@ -22,7 +22,9 @@ To install execute
 tns plugin add nativescript-advanced-webview
 ```
 
-## Usages
+## Example
+
+#### TypeScript
 
 ```typescript
 import { openAdvancedUrl, AdvancedWebViewOptions } from 'nativescript-advanced-webview';
@@ -41,6 +43,4 @@ public whateverYouLike() {
 }
 
 ```
-
-## Example
 
