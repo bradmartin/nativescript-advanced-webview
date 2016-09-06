@@ -5,7 +5,7 @@
         "removeComments": true,
         "experimentalDecorators": true,
         "noEmitHelpers": true,
-        "declaration": true
+        "declaration": false
     },
     "files": [
         "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
