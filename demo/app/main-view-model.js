@@ -1,42 +1,33 @@
 "use strict";
 var observable = require("data/observable");
-var nativescript_advanced_webview_1 = require('nativescript-advanced-webview');
+var frame = require('ui/frame');
 var HelloWorldModel = (function (_super) {
     __extends(HelloWorldModel, _super);
-    function HelloWorldModel() {
+    function HelloWorldModel(page) {
         _super.call(this);
-        // Initialize default values.
-        this._counter = 42;
-        this.updateMessage();
+        this._Parent = page;
     }
-    Object.defineProperty(HelloWorldModel.prototype, "message", {
-        get: function () {
-            return this._message;
-        },
-        set: function (value) {
-            if (this._message !== value) {
-                this._message = value;
-                this.notifyPropertyChange("message", value);
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    HelloWorldModel.prototype.updateMessage = function () {
-        if (this._counter <= 0) {
-            this.message = "Hoorraaay! You unlocked the NativeScript clicker achievement!";
-        }
-        else {
-            this.message = this._counter + " taps left";
-        }
-    };
     HelloWorldModel.prototype.onTap = function () {
-        var opt = {
-            url: 'https://bradmartin.net',
-            showTitle: true,
-            toolbarColor: '#3489db'
-        };
-        var advWeb = nativescript_advanced_webview_1.openAdvancedWebView(opt);
+        try {
+            debugger;
+            var x = SFSafariViewController.alloc().initWithURL(NSURL.URLWithString('https://bradmartin.net'));
+            var parent_1 = this._Parent;
+            var controller = frame.topmost().ios.controller;
+            console.log('CONTROLLER: ' + controller);
+            x.delegate = controller;
+            console.log('parent ios: ' + this._Parent);
+            // parent.ios.presentViewController(x, true, null);
+            console.log(x);
+        }
+        catch (error) {
+            console.log(error);
+        }
+        // let opt: AdvancedWebViewOptions = {
+        //     url: 'https://bradmartin.net',
+        //     showTitle: true,
+        //     toolbarColor: '#3489db'
+        // };
+        // let advWeb = openAdvancedUrl(opt);
     };
     return HelloWorldModel;
 }(observable.Observable));

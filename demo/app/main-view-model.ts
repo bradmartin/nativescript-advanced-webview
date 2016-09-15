@@ -1,45 +1,34 @@
-import observable = require("data/observable");
+import { Observable } from "data/observable";
+import { topmost } from 'ui/frame';
+import { Page } from 'ui/page';
 import { openAdvancedUrl, AdvancedWebViewOptions } from 'nativescript-advanced-webview';
 
-export class HelloWorldModel extends observable.Observable {
+declare var SFSafariViewController, NSURL: any;
 
-    private _counter: number;
-    private _message: string;
+export class HelloWorldModel extends Observable {
 
-    get message(): string {
-        return this._message;
-    }
-    set message(value: string) {
-        if (this._message !== value) {
-            this._message = value;
-            this.notifyPropertyChange("message", value)
-        }
-    }
+    private _Parent: Page;
 
-    constructor() {
+    constructor(page: Page) {
         super();
-
-        // Initialize default values.
-        this._counter = 42;
-        this.updateMessage();
+        this._Parent = page;
     }
 
-    private updateMessage() {
-        if (this._counter <= 0) {
-            this.message = "Hoorraaay! You unlocked the NativeScript clicker achievement!";
-        } else {
-            this.message = this._counter + " taps left";
-        }
-    }
 
     public onTap() {
-        let opt: AdvancedWebViewOptions = {
-            url: 'https://bradmartin.net',
-            showTitle: true,
-            toolbarColor: '#3489db'
-        };
+        try {
 
-        let advWeb = openAdvancedUrl(opt);
+            let opt: AdvancedWebViewOptions = {
+                url: 'https://bradmartin.net',
+                showTitle: true,
+                toolbarColor: '#3489db'
+            };
 
+            let advWeb = openAdvancedUrl(opt);
+
+        } catch (error) {
+            console.log(error);
+        }
     }
+
 }

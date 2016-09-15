@@ -6,6 +6,8 @@
 node_modules/
 .settings/
 
+platforms/ios
+
 .DS_Store
 *js
 *.js.map

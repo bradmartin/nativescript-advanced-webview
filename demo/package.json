@@ -7,10 +7,12 @@
     "id": "org.nativescript.demo",
     "tns-android": {
       "version": "2.2.0"
+    },
+    "tns-ios": {
+      "version": "2.2.1"
     }
   },
   "dependencies": {
-    "nativescript-advanced-webview": "file:..",
     "tns-core-modules": "2.2.1"
   },
   "devDependencies": {

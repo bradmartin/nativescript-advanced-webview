@@ -6,5 +6,5 @@ import { HelloWorldModel } from "./main-view-model";
 export function navigatingTo(args: EventData) {
     // Get the event sender
     var page = <Page>args.object;
-    page.bindingContext = new HelloWorldModel();
+    page.bindingContext = new HelloWorldModel(page);
 }
