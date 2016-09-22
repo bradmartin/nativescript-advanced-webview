@@ -9,32 +9,44 @@
 import { Color } from 'color';
 import { topmost } from 'ui/frame';
 import * as app from 'application';
+import * as utils from 'utils/utils';
 
-declare var SFSafariViewController: any;
+declare var SFSafariViewController, SFSafariViewControllerDelegate: any;
 
+
+// Delegate stuff
+class MyDelegate extends NSObject implements SFSafariViewControllerDelegate {
+    public static ObjCProtocols = [SFSafariViewControllerDelegate];
+
+    didCompleteInitialLoad(didLoadSuccessfully: boolean) {
+        console.log(didLoadSuccessfully);
+
+    }
+
+    safariViewControllerDidFinish() {
+        console.log('did finish');
+    }
+
+}
 
 export function openAdvancedUrl(options: AdvancedWebViewOptions) {
     // make sure url is passed
     if (options.url) {
+        let sfc = SFSafariViewController.alloc().initWithURL(
+            NSURL.URLWithString(options.url)
+        );
 
-        try {
-            let x = SFSafariViewController.alloc().initWithURL(
-                NSURL.URLWithString('https://bradmartin.net')
-            );
+        if (options.toolbarColor)
+            sfc.preferredBarTintColor = new Color(options.toolbarColor).ios;
 
-            let parent = this._Parent;
+        if (options.toolbarControlsColor)
+            sfc.preferredControlTintColor = new Color(options.toolbarControlsColor).ios;
 
-            let controller = topmost().ios.controller;
-            console.log('CONTROLLER: ' + controller);
+        // sfc.delegate = MyDelegate;
 
+        let app = utils.ios.getter(UIApplication, UIApplication.sharedApplication);
 
-            x.delegate = controller;
-
-            console.log('parent ios: ' + this._Parent);
-
-        } catch (error) {
-
-        }
+        app.keyWindow.rootViewController.presentViewControllerAnimatedCompletion(sfc, true, null);
 
     } else {
         throw new Error('No url set in the Advanced WebView Options object.');
@@ -47,6 +59,7 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions) {
 
 export interface AdvancedWebViewOptions {
     url: string;
-    toolbarColor?: string;
     showTitle?: boolean;
+    toolbarColor?: string;
+    toolbarControlsColor?: string;
 }

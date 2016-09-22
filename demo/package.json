@@ -6,14 +6,15 @@
   "nativescript": {
     "id": "org.nativescript.demo",
     "tns-android": {
-      "version": "2.2.0"
+      "version": "2.3.0"
     },
     "tns-ios": {
-      "version": "2.2.1"
+      "version": "2.3.0"
     }
   },
   "dependencies": {
-    "tns-core-modules": "2.2.1"
+    "tns-core-modules": "^2.3.0",
+    "nativescript-advanced-webview": "file:.."
   },
   "devDependencies": {
     "babel-traverse": "6.15.0",

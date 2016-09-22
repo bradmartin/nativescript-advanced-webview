@@ -1,35 +1,33 @@
 "use strict";
-var observable = require("data/observable");
-var frame = require('ui/frame');
+var observable_1 = require("data/observable");
+var platform_1 = require('platform');
+var nativescript_advanced_webview_1 = require('nativescript-advanced-webview');
 var HelloWorldModel = (function (_super) {
     __extends(HelloWorldModel, _super);
     function HelloWorldModel(page) {
         _super.call(this);
-        this._Parent = page;
+        if (platform_1.isIOS) {
+            this.openUrlButtonText = 'Open Safari View Controller';
+        }
+        else {
+            this.openUrlButtonText = 'Open Chrome Custom Tabs';
+        }
     }
     HelloWorldModel.prototype.onTap = function () {
         try {
-            debugger;
-            var x = SFSafariViewController.alloc().initWithURL(NSURL.URLWithString('https://bradmartin.net'));
-            var parent_1 = this._Parent;
-            var controller = frame.topmost().ios.controller;
-            console.log('CONTROLLER: ' + controller);
-            x.delegate = controller;
-            console.log('parent ios: ' + this._Parent);
-            // parent.ios.presentViewController(x, true, null);
-            console.log(x);
+            var opt = {
+                url: 'https://bradmartin.net',
+                showTitle: true,
+                toolbarColor: '#336699',
+                toolbarControlsColor: '#333'
+            };
+            var advWeb = nativescript_advanced_webview_1.openAdvancedUrl(opt);
         }
         catch (error) {
             console.log(error);
         }
-        // let opt: AdvancedWebViewOptions = {
-        //     url: 'https://bradmartin.net',
-        //     showTitle: true,
-        //     toolbarColor: '#3489db'
-        // };
-        // let advWeb = openAdvancedUrl(opt);
     };
     return HelloWorldModel;
-}(observable.Observable));
+}(observable_1.Observable));
 exports.HelloWorldModel = HelloWorldModel;
 //# sourceMappingURL=main-view-model.js.map

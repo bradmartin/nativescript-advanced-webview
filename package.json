@@ -1,7 +1,7 @@
 {
     "name": "nativescript-advanced-webview",
-    "version": "1.0.1",
-    "description": "An advanced webview using Chrome CustomTabs on Android (iOS support coming soon).",
+    "version": "1.1.0",
+    "description": "An advanced webview using Chrome CustomTabs on Android and SFSafariViewController on iOS.",
     "main": "advanced-webview.js",
     "typings": "index.d.ts",
     "nativescript": {
@@ -20,6 +20,9 @@
         "NativeScript",
         "nativescript-advanced-webview",
         "Chrome Custom Tabs",
+        "SafariViewController",
+        "Safari",
+        "Chrome",
         "TypeScript",
         "BradMartin",
         "Thorum",
@@ -46,7 +49,6 @@
         "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
         "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-advanced-webview && tns plugin add .. && tns install",
         "setup": "cd demo && npm install && cd .. && npm run build && cd demo && tns plugin add .. && cd ..",
-        "prepublish": "tsc",
         "start": "npm run demo.android"
     }
 }

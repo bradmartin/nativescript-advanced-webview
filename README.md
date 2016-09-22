@@ -2,7 +2,7 @@
 [![npm](https://img.shields.io/npm/dt/nativescript-advanced-webview.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-advanced-webview)
 
 # NativeScript-Advanced-Webview
-An advanced webview using [Chrome Custom Tabs](https://developer.chrome.com/multidevice/android/customtabs#whatarethey) on Android (iOS support coming soon).
+An advanced webview using [Chrome Custom Tabs](https://developer.chrome.com/multidevice/android/customtabs#whatarethey) on Android and [SFSafariViewController](https://developer.apple.com/reference/safariservices/sfsafariviewcontroller?language=objc) on iOS.
 
 [Here is a video](https://youtu.be/LVseK_CZp5g) showing off Chrome CustomTabs in NativeScript.
 
@@ -11,9 +11,16 @@ An advanced webview using [Chrome Custom Tabs](https://developer.chrome.com/mult
 
 #### Android
 [CustomTabs](https://developer.android.com/reference/android/support/customtabs/package-summary.html)
-
 #### iOS
-** coming soon **
+[SFSafariViewController](https://developer.apple.com/reference/safariservices/sfsafariviewcontroller?language=objc)
+
+
+### Demo
+
+Android |  iOS
+-------- | ---------
+![Android Sample](screens/chromeTabs.gif) | ![iOS Sample](screens/safariViewController.gif)
+
 
 ## Installation
 To install execute
@@ -36,7 +43,8 @@ public whateverYouLike() {
     let opts: AdvancedWebViewOptions = {
         url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
         toolbarColor: '#ff4081',
-        showTitle: false
+        toolbarControlsColor: '#333', // iOS only
+        showTitle: false // Android only
     };
     
     openAdvancedUrl(opts);
@@ -44,3 +52,12 @@ public whateverYouLike() {
 
 ```
 
+### API
+
+- openAdvancedUrl(options: AdvancedWebViewOptions)
+
+##### AdvancedWebViewOptions Properties
+- url: string
+- toolbarColor: string
+- toolbarControlsColor: string - ** iOS only **
+- showTitle: boolean - ** Android only **

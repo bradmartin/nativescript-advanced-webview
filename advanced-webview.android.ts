@@ -21,13 +21,11 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions) {
     let activity = app.android.startActivity || app.android.foregroundActivity;
     let builder = new CustomTabsIntent.Builder();
 
-    if (options.toolbarColor) {
+    if (options.toolbarColor)
       builder.setToolbarColor(new Color(options.toolbarColor).android);
-    }
 
-    if (options.showTitle) {
+    if (options.showTitle)
       builder.setShowTitle(options.showTitle);
-    }
 
     builder.addDefaultShareMenuItem(); /// Adds a default share item to the menu.
     builder.enableUrlBarHiding(); /// Enables the url bar to hide as the user scrolls down on the page.
