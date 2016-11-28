@@ -10,9 +10,6 @@
     },
     "files": [
         "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
-        "demo/node_modules/tns-platform-declarations/tns-core-modules/android17.d.ts",
-        "demo/node_modules/tns-platform-declarations/tns-core-modules/ios.d.ts",
-        "demo/node_modules/tns-platform-declarations/tns-core-modules/org.nativescript.widgets.d.ts",
         "advanced-webview.android.ts",
         "advanced-webview.ios.ts"
     ],

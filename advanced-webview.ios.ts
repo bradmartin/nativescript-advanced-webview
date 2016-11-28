@@ -11,7 +11,7 @@ import { topmost } from 'ui/frame';
 import * as app from 'application';
 import * as utils from 'utils/utils';
 
-declare var SFSafariViewController, SFSafariViewControllerDelegate: any;
+declare var NSURL, UIApplication, SFSafariViewController, SFSafariViewControllerDelegate: any;
 
 
 // Delegate stuff
@@ -34,7 +34,7 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions) {
     if (options.url) {
         let sfc = SFSafariViewController.alloc().initWithURL(
             NSURL.URLWithString(options.url)
-        );
+        )
 
         if (options.toolbarColor)
             sfc.preferredBarTintColor = new Color(options.toolbarColor).ios;
