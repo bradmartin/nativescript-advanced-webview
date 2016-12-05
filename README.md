@@ -41,7 +41,7 @@ import * as AdvancedWebView from 'nativescript-advanced-webview'
 public whateverYouLike() {
     
     let opts: AdvancedWebViewOptions = {
-        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         toolbarColor: '#ff4081',
         toolbarControlsColor: '#333', // iOS only
         showTitle: false // Android only
