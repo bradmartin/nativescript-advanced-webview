@@ -4,10 +4,10 @@
 *
 * Version 1.0.0                                           bradwaynemartin@gmail.com
 **********************************************************************************/
-'use strict';
+("use strict");
 
-import { Color } from 'color';
-import * as app from 'application';
+import { Color } from "color";
+import * as app from "application";
 
 declare var android: any;
 
@@ -23,22 +23,16 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions) {
     if (options.toolbarColor)
       intentBuilder.setToolbarColor(new Color(options.toolbarColor).android);
 
-    if (options.showTitle)
-      intentBuilder.setShowTitle(options.showTitle);
+    if (options.showTitle) intentBuilder.setShowTitle(options.showTitle);
 
     intentBuilder.addDefaultShareMenuItem(); /// Adds a default share item to the menu.
     intentBuilder.enableUrlBarHiding(); /// Enables the url bar to hide as the user scrolls down on the page.
 
     intentBuilder.build().launchUrl(activity, Uri.parse(options.url));
-
   } else {
-    throw new Error('No url set in the Advanced WebView Options object.');
+    throw new Error("No url set in the Advanced WebView Options object.");
   }
-
 }
-
-
-
 
 export interface AdvancedWebViewOptions {
   url: string;

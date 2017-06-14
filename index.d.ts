@@ -6,23 +6,23 @@
 export function openAdvancedUrl(options: AdvancedWebViewOptions): void;
 
 export interface AdvancedWebViewOptions {
-    /**
+  /**
      * The url of the site to open.
      */
-    url: string;
+  url: string;
 
-    /**
+  /**
      * The color of the toolbar.
      */
-    toolbarColor?: string;
+  toolbarColor?: string;
 
-    /**
+  /**
      * Set true to show the site title. *** ANDROID ONLY ***
      */
-    showTitle?: boolean;
+  showTitle?: boolean;
 
-    /**
+  /**
      * The color of the toolbar controls. *** iOS ONLY ***
      */
-    toolbarControlsColor?: string;
+  toolbarControlsColor?: string;
 }
