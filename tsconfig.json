@@ -1,17 +1,31 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "removeComments": true,
-        "experimentalDecorators": true,
-        "noEmitOnError": false,
-        "noEmitHelpers": true,
-        "declaration": false
-    },
-    "files": [
-        "demo/node_modules/tns-core-modules/tns-core-modules.d.ts",
-        "advanced-webview.android.ts",
-        "advanced-webview.ios.ts"
+  "compilerOptions": {
+    "noEmitOnError": true,
+    "noEmitHelpers": true,
+    "sourceMap": false,
+    "removeComments": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "module": "commonjs",
+    "lib": [
+      "es6",
+      "dom"
     ],
-    "compileOnSave": false
+    "skipLibCheck": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "./node_modules/tns-core-modules/*",
+        "./node_modules/*"
+      ]
+    }
+  },
+  "include": [
+    "index.d.ts",
+    "references.d.ts",
+    "advanced-webview.android.ts",
+    "advanced-webview.ios.ts"
+  ]
 }

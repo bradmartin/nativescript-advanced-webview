@@ -6,56 +6,68 @@
 **********************************************************************************/
 ("use strict");
 
-import { Color } from "color";
-import { topmost } from "ui/frame";
-import * as app from "application";
-import * as utils from "utils/utils";
+import { Color } from "tns-core-modules/color";
+import * as utils from "tns-core-modules/utils/utils";
 
-declare var NSURL,
-  UIApplication,
-  SFSafariViewController,
-  SFSafariViewControllerDelegate: any;
-
-// Delegate stuff
-class MyDelegate extends NSObject implements SFSafariViewControllerDelegate {
+class SFSafariViewControllerDelegateImpl extends NSObject
+  implements SFSafariViewControllerDelegate {
   public static ObjCProtocols = [SFSafariViewControllerDelegate];
 
-  didCompleteInitialLoad(didLoadSuccessfully: boolean) {
-    console.log(didLoadSuccessfully);
+  private _owner: WeakRef<any>;
+
+  public static initWithOwner(
+    owner: WeakRef<any>
+  ): SFSafariViewControllerDelegateImpl {
+    let delegate = <SFSafariViewControllerDelegateImpl>SFSafariViewControllerDelegateImpl.new();
+    delegate._owner = owner;
+    return delegate;
   }
 
-  safariViewControllerDidFinish() {
-    console.log("did finish");
+  safariViewControllerDidCompleteInitialLoad(
+    controller: SFSafariViewController,
+    didLoadSuccessfully: boolean
+  ): void {
+    console.log(
+      "Delegate, safariViewControllerDidCompleteInitialLoad: " +
+        didLoadSuccessfully
+    );
+  }
+
+  safariViewControllerDidFinish(controller: SFSafariViewController): void {
+    console.log("Delegate, safariViewControllerDidFinish");
   }
 }
 
 export function openAdvancedUrl(options: AdvancedWebViewOptions) {
-  // make sure url is passed
-  if (options.url) {
-    let sfc = SFSafariViewController.alloc().initWithURL(
-      NSURL.URLWithString(options.url)
-    );
-
-    if (options.toolbarColor)
-      sfc.preferredBarTintColor = new Color(options.toolbarColor).ios;
-
-    if (options.toolbarControlsColor)
-      sfc.preferredControlTintColor = new Color(
-        options.toolbarControlsColor
-      ).ios;
-
-    // sfc.delegate = MyDelegate;
-
-    let app = utils.ios.getter(UIApplication, UIApplication.sharedApplication);
-
-    app.keyWindow.rootViewController.presentViewControllerAnimatedCompletion(
-      sfc,
-      true,
-      null
-    );
-  } else {
+  if (!options.url) {
     throw new Error("No url set in the Advanced WebView Options object.");
   }
+
+  let sfc = SFSafariViewController.alloc().initWithURL(
+    NSURL.URLWithString(options.url)
+  );
+
+  if (options.toolbarColor) {
+    sfc.preferredBarTintColor = new Color(options.toolbarColor).ios;
+  }
+
+  if (options.toolbarControlsColor) {
+    sfc.preferredControlTintColor = new Color(options.toolbarControlsColor).ios;
+  }
+
+  sfc.delegate = SFSafariViewControllerDelegateImpl.initWithOwner(
+    new WeakRef(this)
+  );
+
+  let app = utils.ios.getter(UIApplication, UIApplication.sharedApplication);
+
+  const animated = true;
+  const completionHandler = null;
+  app.keyWindow.rootViewController.presentViewControllerAnimatedCompletion(
+    sfc,
+    animated,
+    completionHandler
+  );
 }
 
 export interface AdvancedWebViewOptions {
