@@ -52,6 +52,27 @@ public whateverYouLike() {
 
 ```
 
+#### Javascript
+
+```javascript
+
+var AdvancedWebView  = require("nativescript-advanced-webview");
+
+exports.openChromTabs = function(args){
+    //var gotoUrl = args.view.bindingContext.url;
+
+    var opts = {
+            url: args.view.bindingContext.url,
+            toolbarColor: '#ff4081',
+            toolbarControlsColor: '#333', // iOS only
+            showTitle: false // Android only
+    };
+   console.log(args.view.bindingContext.url);
+
+   AdvancedWebView.openAdvancedUrl(opts);
+
+```
+
 ### API
 
 - openAdvancedUrl(options: AdvancedWebViewOptions)
