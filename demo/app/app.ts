@@ -1,2 +1,2 @@
-﻿import application = require("application");
+﻿import * as application from "tns-core-modules/application";
 application.start({ moduleName: "main-page" });

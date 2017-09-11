@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "noEmitOnError": true,
+    "noEmitOnError": false,
     "noEmitHelpers": true,
     "sourceMap": false,
     "removeComments": true,
