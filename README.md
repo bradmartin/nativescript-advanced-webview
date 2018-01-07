@@ -1,5 +1,9 @@
 [![npm](https://img.shields.io/npm/v/nativescript-advanced-webview.svg)](https://www.npmjs.com/package/nativescript-advanced-webview)
 [![npm](https://img.shields.io/npm/dt/nativescript-advanced-webview.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-advanced-webview)
+[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-advanced-webview.svg)]
+[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-advanced-webview.svg)](https://github.com/bradmartin/nativescript-advanced-webview/stargazers)
+[![PayPal Donate](https://img.shields.io/badge/Donate-PayPal-ff4081.svg)](https://www.paypal.me/bradwayne88)
+
 
 # NativeScript-Advanced-Webview
 An advanced webview using [Chrome Custom Tabs](https://developer.chrome.com/multidevice/android/customtabs#whatarethey) on Android and [SFSafariViewController](https://developer.apple.com/reference/safariservices/sfsafariviewcontroller?language=objc) on iOS.
