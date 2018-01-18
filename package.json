@@ -1,8 +1,7 @@
 {
   "name": "nativescript-advanced-webview",
-  "version": "1.2.0",
-  "description":
-    "An advanced webview using Chrome CustomTabs on Android and SFSafariViewController on iOS.",
+  "version": "2.0.0",
+  "description": "An advanced webview using Chrome CustomTabs on Android and SFSafariViewController on iOS.",
   "main": "advanced-webview",
   "typings": "index.d.ts",
   "nativescript": {
@@ -53,11 +52,7 @@
       "url": "https://github.com/jibon57"
     }
   ],
-  "license": {
-    "type": "MIT",
-    "url":
-      "https://github.com/bradmartin/nativescript-advanced-webview/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/bradmartin/nativescript-advanced-webview/issues"
   },
@@ -68,18 +63,18 @@
     "demo.ios": "npm run preparedemo && cd demo && tns emulate ios",
     "demo.android": "npm run preparedemo && cd demo && tns run android",
     "debug.ios": "npm run preparedemo && cd demo && tns debug ios --emulator",
-    "debug.android":
-      "npm run preparedemo && cd demo && tns debug android --emulator",
-    "preparedemo":
-      "npm run build && cd demo && tns plugin remove nativescript-advanced-webview && tns plugin add .. && tns install",
+    "debug.android": "npm run preparedemo && cd demo && tns debug android --emulator",
+    "preparedemo": "npm run build && cd demo && tns plugin remove nativescript-advanced-webview && tns plugin add .. && tns install",
     "nuke": "rm -rf node_modules && cd demo && rm -rf node_modules && cd ..",
-    "setup":
-      "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin remove nativescript-advanced-webview; tns plugin add .. && cd ..",
+    "setup": "npm i && cd demo && npm i && cd .. && npm run build && cd demo && tns plugin remove nativescript-advanced-webview; tns plugin add .. && cd ..",
     "start": "npm run demo.android",
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.ts": ["prettier --write", "git add"]
+    "*.ts": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "husky": "^0.13.4",

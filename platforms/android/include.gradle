@@ -7,6 +7,13 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url 'https://maven.google.com'
+        }
+}
+
 dependencies {
-    compile 'com.android.support:customtabs:25.0.1'
+    compile 'com.android.support:customtabs:27.0.2'
+    compile 'com.android.support:appcompat-v7:27.0.2'
 }

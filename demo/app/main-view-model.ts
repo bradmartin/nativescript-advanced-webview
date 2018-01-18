@@ -25,7 +25,10 @@ export class HelloWorldModel extends Observable {
         url: "https://bradmartin.net",
         showTitle: true,
         toolbarColor: "#336699",
-        toolbarControlsColor: "#333"
+        toolbarControlsColor: "#333",
+        isClosed: closed => {
+          console.log(closed);
+        }
       };
 
       let advWeb = openAdvancedUrl(opt);

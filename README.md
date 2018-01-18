@@ -37,20 +37,27 @@ tns plugin add nativescript-advanced-webview
 
 #### TypeScript
 
+Initiate the service before the app starts e.g app.ts, main.ts
+
+```ts
+import { init } from 'nativescript-advanced-webview';
+init();
+```
+
 ```typescript
 import { openAdvancedUrl, AdvancedWebViewOptions } from 'nativescript-advanced-webview';
     //// or
 import * as AdvancedWebView from 'nativescript-advanced-webview'
 
 public whateverYouLike() {
-    
+
     let opts: AdvancedWebViewOptions = {
         url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         toolbarColor: '#ff4081',
         toolbarControlsColor: '#333', // iOS only
         showTitle: false // Android only
     };
-    
+
     openAdvancedUrl(opts);
 }
 
@@ -58,9 +65,16 @@ public whateverYouLike() {
 
 #### Javascript
 
-```javascript
-
 var AdvancedWebView  = require("nativescript-advanced-webview");
+
+Initiate the service before the app starts e.g app.ts, main.ts
+
+```js
+AdvancedWebView.init();
+```
+
+
+```javascript
 
 exports.openChromTabs = function(args){
     //var gotoUrl = args.view.bindingContext.url;
@@ -86,3 +100,4 @@ exports.openChromTabs = function(args){
 - toolbarColor: string
 - toolbarControlsColor: string - ** iOS only **
 - showTitle: boolean - ** Android only **
+- isClosed: Function
