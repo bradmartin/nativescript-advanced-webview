@@ -8,19 +8,46 @@
 
 import { Color } from "tns-core-modules/color";
 import * as app from "tns-core-modules/application";
+import * as utils from "tns-core-modules/utils/utils";
 
-declare const android: any;
+export function init() {
+  co.fitcom.fancywebview.AdvancedWebView.init(
+    utils.ad.getApplicationContext(),
+    true
+  );
+}
 
-const CustomTabsIntent = android.support.customtabs.CustomTabsIntent;
-const Uri = android.net.Uri;
-
-export function openAdvancedUrl(options: AdvancedWebViewOptions) {
+export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   if (!options.url) {
     throw new Error("No url set in the Advanced WebView Options object.");
   }
 
   let activity = app.android.startActivity || app.android.foregroundActivity;
-  let intentBuilder = new CustomTabsIntent.Builder();
+  let client;
+  const i = new co.fitcom.fancywebview.AdvancedWebViewListener({
+    onCustomTabsServiceConnected(
+      componentName: android.content.ComponentName,
+      client: any
+    ) {},
+    onServiceDisconnected(componentName: android.content.ComponentName) {},
+    onNavigationEvent: function(
+      navigationEvent: number,
+      extras: android.os.Bundle
+    ) {
+      switch (navigationEvent) {
+        case 6:
+          if (options.isClosed && typeof options.isClosed === "function") {
+            options.isClosed(true);
+          }
+          break;
+      }
+    }
+  });
+  const wv = new co.fitcom.fancywebview.AdvancedWebView(
+    utils.ad.getApplicationContext(),
+    i
+  );
+  let intentBuilder = wv.getBuilder();
 
   if (options.toolbarColor) {
     intentBuilder.setToolbarColor(new Color(options.toolbarColor).android);
@@ -33,28 +60,12 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions) {
   intentBuilder.addDefaultShareMenuItem(); /// Adds a default share item to the menu.
   intentBuilder.enableUrlBarHiding(); /// Enables the url bar to hide as the user scrolls down on the page.
 
-  let pm = app.android.context.getPackageManager();
-
-  try {
-    let isChrome;
-    isChrome = pm.getApplicationInfo("com.android.chrome", 0);
-    if (isChrome.enabled) {
-      // So chrome has installed and enabled
-      let intent = intentBuilder.build().intent;
-      intent.setPackage("com.android.chrome");
-      intentBuilder.build().launchUrl(activity, Uri.parse(options.url));
-    } else {
-      // Looks like it installed but not enabled. So we will move for default.
-      intentBuilder.build().launchUrl(activity, Uri.parse(options.url));
-    }
-  } catch (err) {
-    // Chrome not found. So we will move for default.
-    intentBuilder.build().launchUrl(activity, Uri.parse(options.url));
-  }
+  wv.loadUrl(options.url);
 }
 
 export interface AdvancedWebViewOptions {
   url: string;
   toolbarColor?: string;
   showTitle?: boolean;
+  isClosed?: Function;
 }

@@ -1,9 +1,9 @@
 /**********************************************************************************
-* (c) 2016, Brad Martin.
-* Licensed under the MIT license.
-*
-* Version 1.0.0                                           bradwaynemartin@gmail.com
-**********************************************************************************/
+ * (c) 2016, Brad Martin.
+ * Licensed under the MIT license.
+ *
+ * Version 1.0.0                                           bradwaynemartin@gmail.com
+ **********************************************************************************/
 ("use strict");
 
 import { Color } from "tns-core-modules/color";
@@ -14,12 +14,14 @@ class SFSafariViewControllerDelegateImpl extends NSObject
   public static ObjCProtocols = [SFSafariViewControllerDelegate];
 
   private _owner: WeakRef<any>;
-
-  public static initWithOwner(
-    owner: WeakRef<any>
+  private _callback: Function;
+  public static initWithOwnerCallback(
+    owner: WeakRef<any>,
+    callback: Function
   ): SFSafariViewControllerDelegateImpl {
     let delegate = <SFSafariViewControllerDelegateImpl>SFSafariViewControllerDelegateImpl.new();
     delegate._owner = owner;
+    delegate._callback = callback;
     return delegate;
   }
 
@@ -34,11 +36,15 @@ class SFSafariViewControllerDelegateImpl extends NSObject
   }
 
   safariViewControllerDidFinish(controller: SFSafariViewController): void {
-    console.log("Delegate, safariViewControllerDidFinish");
+    if (this._callback && typeof this._callback === "function") {
+      this._callback(true);
+    }
   }
 }
 
-export function openAdvancedUrl(options: AdvancedWebViewOptions) {
+export function init() {}
+
+export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   if (!options.url) {
     throw new Error("No url set in the Advanced WebView Options object.");
   }
@@ -55,8 +61,9 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions) {
     sfc.preferredControlTintColor = new Color(options.toolbarControlsColor).ios;
   }
 
-  sfc.delegate = SFSafariViewControllerDelegateImpl.initWithOwner(
-    new WeakRef(this)
+  sfc.delegate = SFSafariViewControllerDelegateImpl.initWithOwnerCallback(
+    new WeakRef(this),
+    options.isClosed
   );
 
   let app = utils.ios.getter(UIApplication, UIApplication.sharedApplication);
@@ -75,4 +82,5 @@ export interface AdvancedWebViewOptions {
   showTitle?: boolean;
   toolbarColor?: string;
   toolbarControlsColor?: string;
+  isClosed?: Function;
 }

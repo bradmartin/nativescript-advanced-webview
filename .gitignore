@@ -16,3 +16,4 @@ platforms/ios
 *.tgz
 *.gz
 *.zip
+package-lock.json

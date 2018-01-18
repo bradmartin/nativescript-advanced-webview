@@ -6,22 +6,22 @@
   "nativescript": {
     "id": "org.nativescript.demo",
     "tns-ios": {
-      "version": "3.0.1"
+      "version": "3.4.1"
     },
     "tns-android": {
-      "version": "3.0.1"
+      "version": "3.4.1"
     }
   },
   "dependencies": {
-    "nativescript-advanced-webview": "file:..",
-    "tns-core-modules": "^3.0.1"
+    "nativescript-advanced-webview": "file:../nativescript-advanced-webview-1.2.0.tgz",
+    "tns-core-modules": "^3.4.0"
   },
   "devDependencies": {
     "babel-traverse": "6.15.0",
     "babel-types": "6.15.0",
     "babylon": "6.9.1",
     "lazy": "1.0.11",
-    "nativescript-dev-typescript": "^0.3.0",
-    "typescript": "^2.2.0"
+    "nativescript-dev-typescript": "^0.6.0",
+    "typescript": "^2.4.0"
   }
 }
