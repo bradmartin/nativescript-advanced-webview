@@ -9,7 +9,7 @@
 import { Color } from "tns-core-modules/color";
 import * as app from "tns-core-modules/application";
 import * as utils from "tns-core-modules/utils/utils";
-
+const REQUEST_CODE = 1868;
 export function init() {
   co.fitcom.fancywebview.AdvancedWebView.init(
     utils.ad.getApplicationContext(),
@@ -21,6 +21,18 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   if (!options.url) {
     throw new Error("No url set in the Advanced WebView Options object.");
   }
+  app.android.on(app.AndroidApplication.activityResultEvent, (args: any) => {
+    const requestCode = args.requestCode;
+    const resultCode = args.resultCode;
+    if (requestCode === REQUEST_CODE) {
+      if (resultCode === android.app.Activity.RESULT_CANCELED) {
+        if (options.isClosed && typeof options.isClosed === "function") {
+          options.isClosed(true);
+        }
+        app.android.off(app.AndroidApplication.activityResultEvent);
+      }
+    }
+  });
 
   let activity = app.android.startActivity || app.android.foregroundActivity;
   let client;
