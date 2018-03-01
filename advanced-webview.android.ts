@@ -55,10 +55,7 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
       }
     }
   });
-  const wv = new co.fitcom.fancywebview.AdvancedWebView(
-    utils.ad.getApplicationContext(),
-    i
-  );
+  const wv = new co.fitcom.fancywebview.AdvancedWebView(activity, i);
   let intentBuilder = wv.getBuilder();
 
   if (options.toolbarColor) {
