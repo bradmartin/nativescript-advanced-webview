@@ -57,18 +57,18 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   });
   const wv = new co.fitcom.fancywebview.AdvancedWebView(activity, i);
   let intentBuilder = wv.getBuilder();
+  if (intentBuilder) {
+    if (options.toolbarColor) {
+      intentBuilder.setToolbarColor(new Color(options.toolbarColor).android);
+    }
 
-  if (options.toolbarColor) {
-    intentBuilder.setToolbarColor(new Color(options.toolbarColor).android);
+    if (options.showTitle) {
+      intentBuilder.setShowTitle(options.showTitle);
+    }
+
+    intentBuilder.addDefaultShareMenuItem(); /// Adds a default share item to the menu.
+    intentBuilder.enableUrlBarHiding(); /// Enables the url bar to hide as the user scrolls down on the page.
   }
-
-  if (options.showTitle) {
-    intentBuilder.setShowTitle(options.showTitle);
-  }
-
-  intentBuilder.addDefaultShareMenuItem(); /// Adds a default share item to the menu.
-  intentBuilder.enableUrlBarHiding(); /// Enables the url bar to hide as the user scrolls down on the page.
-
   wv.loadUrl(options.url);
 }
 
