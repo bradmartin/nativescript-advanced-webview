@@ -62,7 +62,7 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   }
 
   sfc.delegate = SFSafariViewControllerDelegateImpl.initWithOwnerCallback(
-    new WeakRef(this),
+    new WeakRef({}),
     options.isClosed
   );
 
