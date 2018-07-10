@@ -18,7 +18,7 @@ An advanced webview using <a href="https://developer.chrome.com/multidevice/andr
      <a href="https://github.com/bradmartin/nativescript-advanced-webview/network">
         <img src="https://img.shields.io/github/forks/bradmartin/nativescript-advanced-webview.svg" alt="forks">
     </a>
-    <a href="https://github.com/bradmartin/nativescript-advanced-webview/blob/master/src/LICENSE.md">
+    <a href="https://github.com/bradmartin/nativescript-advanced-webview/blob/master/LICENSE.md">
         <img src="https://img.shields.io/github/license/bradmartin/nativescript-advanced-webview.svg" alt="license">
     </a>
 </p>
