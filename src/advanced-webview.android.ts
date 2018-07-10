@@ -49,12 +49,10 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
 	let intentBuilder = wv.getBuilder();
 	if (intentBuilder) {
 		if (options.toolbarColor) {
-			console.log('setting toolbar color');
 			intentBuilder.setToolbarColor(new Color(options.toolbarColor).android);
 		}
 
 		if (options.showTitle) {
-			console.log('show title', options.showTitle);
 			intentBuilder.setShowTitle(options.showTitle);
 		}
 
