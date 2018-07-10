@@ -1,5 +1,4 @@
-<Page 
-  xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo">
   <StackLayout>
     <Label text="Watch the magic!" class="title"/>
     <Button text="{{ openUrlButtonText }}" tap="{{ onTap }}" textWrap="true" />

@@ -9,11 +9,22 @@ node_modules/
 
 platforms/ios
 
-.DS_Store
-*js
-*.js.map
 *.tar
 *.tgz
 *.gz
 *.zip
+*.js
+!src/scripts/*.js
 package-lock.json
+
+node_modules
+.vscode/
+*.DS_Store
+.idea/
+.vscode/
+.tscache/
+/demo/node_modules/
+/demo/platforms/
+/demo/hooks/
+node_modules/
+.settings/

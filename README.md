@@ -1,32 +1,50 @@
-[![npm](https://img.shields.io/npm/v/nativescript-advanced-webview.svg)](https://www.npmjs.com/package/nativescript-advanced-webview)
-[![npm](https://img.shields.io/npm/dt/nativescript-advanced-webview.svg?label=npm%20downloads)](https://www.npmjs.com/package/nativescript-advanced-webview)
-[![GitHub forks](https://img.shields.io/github/forks/bradmartin/nativescript-advanced-webview.svg)]
-[![GitHub stars](https://img.shields.io/github/stars/bradmartin/nativescript-advanced-webview.svg)](https://github.com/bradmartin/nativescript-advanced-webview/stargazers)
-[![PayPal Donate](https://img.shields.io/badge/Donate-PayPal-ff4081.svg)](https://www.paypal.me/bradwayne88)
+<a align="center" href="https://www.npmjs.com/package/nativescript-advanced-webview">
+    <h3 align="center">NativeScript Advanced Webview</h3>
+</a>
+<h4 align="center">
+An advanced webview using <a href="https://developer.chrome.com/multidevice/android/customtabs#whatarethey">Chrome Custom Tabs</a> on Android and <a href="https://developer.apple.com/reference/safariservices/sfsafariviewcontroller?language=objc">SFSafariViewController</a> on iOS.
+</h4>
 
-
-# NativeScript-Advanced-Webview
-An advanced webview using [Chrome Custom Tabs](https://developer.chrome.com/multidevice/android/customtabs#whatarethey) on Android and [SFSafariViewController](https://developer.apple.com/reference/safariservices/sfsafariviewcontroller?language=objc) on iOS.
+<p align="center">
+    <a href="https://www.npmjs.com/package/nativescript-advanced-webview">
+        <img src="https://img.shields.io/npm/v/nativescript-advanced-webview.svg" alt="npm">
+    </a>
+    <a href="https://www.npmjs.com/package/nativescript-advanced-webview">
+        <img src="https://img.shields.io/npm/dt/nativescript-advanced-webview.svg?label=npm%20downloads" alt="npm">
+    </a>
+    <a href="https://github.com/bradmartin/nativescript-advanced-webview/stargazers">
+        <img src="https://img.shields.io/github/stars/bradmartin/nativescript-advanced-webview.svg" alt="stars">
+    </a>
+     <a href="https://github.com/bradmartin/nativescript-advanced-webview/network">
+        <img src="https://img.shields.io/github/forks/bradmartin/nativescript-advanced-webview.svg" alt="forks">
+    </a>
+    <a href="https://github.com/bradmartin/nativescript-advanced-webview/blob/master/src/LICENSE.md">
+        <img src="https://img.shields.io/github/license/bradmartin/nativescript-advanced-webview.svg" alt="license">
+    </a>
+</p>
 
 [Here is a video](https://youtu.be/LVseK_CZp5g) showing off Chrome CustomTabs in NativeScript.
 
-### Perf Matters
-[Android Comparison](https://developer.chrome.com/multidevice/images/customtab/performance.gif)
-
 #### Android
+
 [CustomTabs](https://developer.android.com/reference/android/support/customtabs/package-summary.html)
+
 #### iOS
+
 [SFSafariViewController](https://developer.apple.com/reference/safariservices/sfsafariviewcontroller?language=objc)
 
+### Why use this? Because Perf Matters
+
+[Android Comparison](https://developer.chrome.com/multidevice/images/customtab/performance.gif)
 
 ### Demo
 
-Android |  iOS
--------- | ---------
-![Android Sample](screens/chromeTabs.gif) | ![iOS Sample](screens/safariViewController.gif)
-
+| Android                                   | iOS                                             |
+| ----------------------------------------- | ----------------------------------------------- |
+| ![Android Sample](screens/chromeTabs.gif) | ![iOS Sample](screens/safariViewController.gif) |
 
 ## Installation
+
 To install execute
 
 ```
@@ -39,7 +57,7 @@ tns plugin add nativescript-advanced-webview
 
 Initiate the service before the app starts e.g app.ts, main.ts
 
-```ts
+```typescript
 import { init } from 'nativescript-advanced-webview';
 init();
 ```
@@ -60,22 +78,19 @@ public whateverYouLike() {
 
     openAdvancedUrl(opts);
 }
-
 ```
 
 #### Javascript
 
-var AdvancedWebView  = require("nativescript-advanced-webview");
+var AdvancedWebView = require("nativescript-advanced-webview");
 
 Initiate the service before the app starts e.g app.ts, main.ts
 
-```js
+```javascript
 AdvancedWebView.init();
 ```
 
-
 ```javascript
-
 exports.openChromTabs = function(args){
     //var gotoUrl = args.view.bindingContext.url;
 
@@ -88,7 +103,6 @@ exports.openChromTabs = function(args){
    console.log(args.view.bindingContext.url);
 
    AdvancedWebView.openAdvancedUrl(opts);
-
 ```
 
 ### API
@@ -96,6 +110,7 @@ exports.openChromTabs = function(args){
 - openAdvancedUrl(options: AdvancedWebViewOptions)
 
 ##### AdvancedWebViewOptions Properties
+
 - url: string
 - toolbarColor: string
 - toolbarControlsColor: string - ** iOS only **
