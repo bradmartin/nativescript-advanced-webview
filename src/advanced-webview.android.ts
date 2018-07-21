@@ -4,13 +4,38 @@
  *
  * Version 2.0.4                                          bradwaynemartin@gmail.com
  **********************************************************************************/
+/// <reference path="./types/android.d.ts" />
 
 import { Color } from 'tns-core-modules/color';
 import * as app from 'tns-core-modules/application';
 import * as utils from 'tns-core-modules/utils/utils';
+import { android as a } from './types/android';
+import CustomTabsClient = a.support.customtabs.CustomTabsClient;
+import CustomTabsIntent = a.support.customtabs.CustomTabsIntent;
+import CustomTabsServiceConnection = a.support.customtabs.CustomTabsServiceConnection;
 const REQUEST_CODE = 1868;
+const CUSTOM_TAB_PACKAGE_NAME = 'com.android.chrome';
+let client: CustomTabsClient;
+
 export function init() {
-	co.fitcom.fancywebview.AdvancedWebView.init(utils.ad.getApplicationContext(), true);
+	const connection = new CustomTabsServiceConnection({
+		onCustomTabsServiceConnected: function(
+			componentName: android.content.ComponentName,
+			customTabsClient: CustomTabsClient
+		) {
+			client = customTabsClient;
+			client.warmup(long(0));
+		},
+		onCustomTabsServiceDisconnected: function(componentName: android.content.ComponentName) {
+			client = null;
+		}
+	});
+
+	CustomTabsClient.bindCustomTabsService(
+		app.android.startActivity || app.android.foregroundActivity,
+		CUSTOM_TAB_PACKAGE_NAME,
+		connection
+	);
 }
 
 export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
@@ -31,22 +56,8 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
 	});
 
 	let activity = app.android.startActivity || app.android.foregroundActivity;
-	let client;
-	const i = new co.fitcom.fancywebview.AdvancedWebViewListener({
-		onCustomTabsServiceConnected(componentName: android.content.ComponentName, client: any) {},
-		onServiceDisconnected(componentName: android.content.ComponentName) {},
-		onNavigationEvent: function(navigationEvent: number, extras: android.os.Bundle) {
-			switch (navigationEvent) {
-				case 6:
-					if (options.isClosed && typeof options.isClosed === 'function') {
-						options.isClosed(true);
-					}
-					break;
-			}
-		}
-	});
-	const wv = new co.fitcom.fancywebview.AdvancedWebView(activity, i);
-	let intentBuilder = wv.getBuilder();
+
+	const intentBuilder = new CustomTabsIntent.Builder();
 	if (intentBuilder) {
 		if (options.toolbarColor) {
 			intentBuilder.setToolbarColor(new Color(options.toolbarColor).android);
@@ -59,7 +70,7 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
 		intentBuilder.addDefaultShareMenuItem(); /// Adds a default share item to the menu.
 		intentBuilder.enableUrlBarHiding(); /// Enables the url bar to hide as the user scrolls down on the page.
 	}
-	wv.loadUrl(options.url);
+	intentBuilder.build().launchUrl(activity, android.net.Uri.parse(options.url));
 }
 
 export interface AdvancedWebViewOptions {
