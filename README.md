@@ -116,3 +116,9 @@ exports.openChromTabs = function(args){
 - toolbarControlsColor: string - ** iOS only **
 - showTitle: boolean - ** Android only **
 - isClosed: Function
+
+##### Demo App
+
+- fork the repo
+- cd into the `src` directory
+- execute `npm run demo.android` or `npm run demo.ios` (these cmds are in the package.json `scripts` section of the src if you're curious what is executing)
