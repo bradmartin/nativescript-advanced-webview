@@ -6,29 +6,41 @@ import { openAdvancedUrl, AdvancedWebViewOptions } from 'nativescript-advanced-w
 export class HelloWorldModel extends Observable {
 	public openUrlButtonText: string;
 
+	public openCloseUrlButtonText: string;
+	
+	private _opt: AdvancedWebViewOptions = {
+		url: 'https://bradmartin.net',
+		showTitle: true,
+		toolbarColor: '#336699',
+		toolbarControlsColor: '#333',
+		isClosed: closed => {
+			console.log(closed);
+		}
+	};
+
 	constructor(page: Page) {
 		super();
 
 		if (isIOS) {
 			this.openUrlButtonText = 'Open Safari View Controller';
+			this.openCloseUrlButtonText = 'Open then Close Safari View Controller';
 		} else {
 			this.openUrlButtonText = 'Open Chrome Custom Tabs';
 		}
 	}
-
-	public onTap() {
+	
+	public onOpenTap() {
 		try {
-			let opt: AdvancedWebViewOptions = {
-				url: 'https://bradmartin.net',
-				showTitle: true,
-				toolbarColor: '#336699',
-				toolbarControlsColor: '#333',
-				isClosed: closed => {
-					console.log(closed);
-				}
-			};
-
-			openAdvancedUrl(opt);
+			openAdvancedUrl(this._opt);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+	
+	public onOpenCloseTap() {
+		try {
+			const advancedWebView = openAdvancedUrl(this._opt);
+			setTimeout(advancedWebView.close, 5000);
 		} catch (error) {
 			console.log(error);
 		}

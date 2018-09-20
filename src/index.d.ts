@@ -3,9 +3,16 @@
  * If the browser is not installed on the device, it should fall back to a webview.
  * @param {AdvancedWebViewOptions}
  */
-export function openAdvancedUrl(options: AdvancedWebViewOptions): void;
+export function openAdvancedUrl(options: AdvancedWebViewOptions): AdvancedWebView;
 
 export function init(): void;
+
+export interface AdvancedWebView {
+	/**
+	 * Closes the webview instance. *** iOS ONLY ***
+	 */
+	close: Function;
+}
 
 export interface AdvancedWebViewOptions {
 	/**

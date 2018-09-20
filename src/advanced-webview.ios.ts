@@ -5,6 +5,7 @@
  * Version 2.0.4                                           bradwaynemartin@gmail.com
  **********************************************************************************/
 
+import { AdvancedWebView } from './';
 import { Color } from 'tns-core-modules/color';
 import * as utils from 'tns-core-modules/utils/utils';
 
@@ -33,7 +34,7 @@ class SFSafariViewControllerDelegateImpl extends NSObject implements SFSafariVie
 
 export function init() {}
 
-export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
+export function openAdvancedUrl(options: AdvancedWebViewOptions): AdvancedWebView {
 	if (!options.url) {
 		throw new Error('No url set in the Advanced WebView Options object.');
 	}
@@ -55,6 +56,12 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
 	const animated = true;
 	const completionHandler = null;
 	app.keyWindow.rootViewController.presentViewControllerAnimatedCompletion(sfc, animated, completionHandler);
+	
+	return {
+		close: function() {
+			sfc.dismissViewControllerAnimatedCompletion(animated, null);
+		}
+	};
 }
 
 export interface AdvancedWebViewOptions {
