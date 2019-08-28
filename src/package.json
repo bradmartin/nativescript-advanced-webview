@@ -45,7 +45,7 @@
 		"ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
 		"generate.typings.ios": "cd ../demo && TNS_DEBUG_METADATA_PATH=\"$(pwd)/metadata\" tns build ios && TNS_TYPESCRIPT_DECLARATIONS_PATH=\"$(pwd)/typings\" tns build ios && echo 'Now look for your library typings in demo/typings!'",
 		"prepack": "npm run build.native",
-		"make-changelog": "cd ../ && github_changelog_generator -u nstudio -p nativescript-snackbar --token=<TOKEN>"
+		"make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-advanced-webview --token=<TOKEN>"
 	},
 	"lint-staged": {
 		"**/*.{js, css, ts, json, scss, html, xml, md}": [

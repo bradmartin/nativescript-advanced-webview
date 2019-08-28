@@ -24,7 +24,7 @@ export class HelloWorldModel extends Observable {
 				toolbarColor: '#ff9999',
 				toolbarControlsColor: '#fff',
 				isClosed: closed => {
-					console.log(closed);
+					console.log('closed', closed);
 				}
 			};
 
