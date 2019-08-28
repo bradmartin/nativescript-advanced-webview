@@ -4,6 +4,7 @@
 		"comment-format": [true, "check-space"],
 		"indent": [true, "tabs"],
 		"no-duplicate-variable": true,
+		"prefer-const": true,
 		"no-eval": true,
 		"no-require-imports": false,
 		"no-internal-module": true,

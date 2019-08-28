@@ -2,15 +2,19 @@
  * (c) 2016, Brad Martin.
  * Licensed under the MIT license.
  *
- * Version 2.0.4                                          bradwaynemartin@gmail.com
+ * Version 3.0.0                                          bradwaynemartin@gmail.com
  **********************************************************************************/
 
-import { Color } from 'tns-core-modules/color';
 import * as app from 'tns-core-modules/application';
-import * as utils from 'tns-core-modules/utils/utils';
+import { Color } from 'tns-core-modules/color';
+import { ad as androidUtils } from 'tns-core-modules/utils/utils';
+
 const REQUEST_CODE = 1868;
+
 export function init() {
-	co.fitcom.fancywebview.AdvancedWebView.init(utils.ad.getApplicationContext(), true);
+	console.dir(co.fitcom.fancywebview.AdvancedWebViewStatics);
+	console.dir(co.fitcom.fancywebview);
+	(co.fitcom.fancywebview.AdvancedWebViewStatics as any).INSTANCE.init(androidUtils.getApplicationContext(), true);
 }
 
 export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
@@ -30,8 +34,8 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
 		}
 	});
 
-	let activity = app.android.startActivity || app.android.foregroundActivity;
-	let client;
+	const activity = app.android.startActivity || app.android.foregroundActivity;
+
 	const i = new co.fitcom.fancywebview.AdvancedWebViewListener({
 		onCustomTabsServiceConnected(componentName: android.content.ComponentName, client: any) {},
 		onServiceDisconnected(componentName: android.content.ComponentName) {},
@@ -45,8 +49,10 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
 			}
 		}
 	});
+
 	const wv = new co.fitcom.fancywebview.AdvancedWebView(activity, i);
-	let intentBuilder = wv.getBuilder();
+	const intentBuilder = wv.getBuilder(); // androidx.browser.customtabs.CustomTabsIntent.Builder
+
 	if (intentBuilder) {
 		if (options.toolbarColor) {
 			intentBuilder.setToolbarColor(new Color(options.toolbarColor).android);
@@ -56,9 +62,15 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
 			intentBuilder.setShowTitle(options.showTitle);
 		}
 
-		intentBuilder.addDefaultShareMenuItem(); /// Adds a default share item to the menu.
-		intentBuilder.enableUrlBarHiding(); /// Enables the url bar to hide as the user scrolls down on the page.
+		/// Adds a default share item to the menu.
+		/// Enables the url bar to hide as the user scrolls down on the page.
+		intentBuilder
+			.addDefaultShareMenuItem()
+			.enableUrlBarHiding()
+			.setInstantAppsEnabled(true);
 	}
+
+	wv.setBuilder(intentBuilder);
 	wv.loadUrl(options.url);
 }
 

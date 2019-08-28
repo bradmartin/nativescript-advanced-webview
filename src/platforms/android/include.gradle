@@ -4,12 +4,12 @@ android {
 }
 
 repositories {
-    maven {
-        url 'https://maven.google.com'
-        }
+    maven { 
+        url 'https://jitpack.io' 
+    }
 }
 
 dependencies {
-    compile 'com.android.support:customtabs:27.0.2'
-    compile 'com.android.support:appcompat-v7:27.0.2'
+	implementation 'com.github.bradmartin:fancy-advanced-webview:72921b0e39'
+    implementation 'androidx.browser:browser:1.0.0'
 }

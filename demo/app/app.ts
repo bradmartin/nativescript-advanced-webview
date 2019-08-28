@@ -1,4 +1,6 @@
-﻿import * as application from 'tns-core-modules/application';
-import { init } from 'nativescript-advanced-webview';
+﻿import { init } from 'nativescript-advanced-webview';
+import * as application from 'tns-core-modules/application';
+
 init();
-application.start({ moduleName: 'main-page' });
+
+application.run({ moduleName: 'app-root' });

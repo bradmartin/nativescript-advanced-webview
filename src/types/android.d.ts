@@ -1,8 +1,8 @@
 /// <reference path="./_helpers.d.ts" />
 import androidcontentContext = android.content.Context;
-import androidsupportcustomtabsCustomTabsClient = android.support.customtabs.CustomTabsClient;
-import androidsupportcustomtabsCustomTabsSession = android.support.customtabs.CustomTabsSession;
-import androidsupportcustomtabsCustomTabsIntentBuilder = android.support.customtabs.CustomTabsIntent.Builder;
+import androidsupportcustomtabsCustomTabsClient = androidx.browser.customtabs.CustomTabsClient;
+import androidsupportcustomtabsCustomTabsSession = androidx.browser.customtabs.CustomTabsSession;
+import androidsupportcustomtabsCustomTabsIntentBuilder = androidx.browser.customtabs.CustomTabsIntent.Builder;
 /// <reference path="./android.content.Context.d.ts" />
 /// <reference path="./android.support.customtabs.CustomTabsClient.d.ts" />
 /// <reference path="./android.support.customtabs.CustomTabsSession.d.ts" />
@@ -18,9 +18,20 @@ declare namespace co {
 				public getSession(): androidsupportcustomtabsCustomTabsSession;
 				public static init(param0: androidcontentContext, param1: boolean): void;
 				public getBuilder(): androidsupportcustomtabsCustomTabsIntentBuilder;
+				public setBuilder(builder: androidsupportcustomtabsCustomTabsIntentBuilder): void;
 				public setWebViewListener(param0: co.fitcom.fancywebview.AdvancedWebViewListener): void;
 				public setCustomTabsClient(param0: androidsupportcustomtabsCustomTabsClient): void;
 				public getCustomTabsClient(): androidsupportcustomtabsCustomTabsClient;
+			}
+		}
+	}
+}
+
+declare namespace co {
+	export namespace fitcom {
+		export namespace fancywebview {
+			export class AdvancedWebViewStatics {
+				public init(context: android.content.Context, enabled: boolean): void;
 			}
 		}
 	}

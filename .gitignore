@@ -4,6 +4,7 @@
 /demo/node_modules/
 /demo/platforms/
 /demo/lib/
+/demo/hooks/
 node_modules/
 .settings/
 
@@ -14,6 +15,7 @@ platforms/ios
 *.gz
 *.zip
 *.js
+!demo/webpack.config.js
 !src/scripts/*.js
 package-lock.json
 
