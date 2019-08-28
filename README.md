@@ -64,16 +64,17 @@ init();
 
 ```typescript
 import { openAdvancedUrl, AdvancedWebViewOptions } from 'nativescript-advanced-webview';
-    //// or
-import * as AdvancedWebView from 'nativescript-advanced-webview'
 
 public whateverYouLike() {
 
-    let opts: AdvancedWebViewOptions = {
+    const opts: AdvancedWebViewOptions = {
         url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
         toolbarColor: '#ff4081',
         toolbarControlsColor: '#333', // iOS only
-        showTitle: false // Android only
+        showTitle: false, // Android only
+        isClosed: (res) => {
+            console.log('closed it', res);
+        }
     };
 
     openAdvancedUrl(opts);
@@ -82,25 +83,25 @@ public whateverYouLike() {
 
 #### Javascript
 
-var AdvancedWebView = require("nativescript-advanced-webview");
-
 Initiate the service before the app starts e.g app.ts, main.ts
 
 ```javascript
+var AdvancedWebView = require('nativescript-advanced-webview');
+
 AdvancedWebView.init();
 ```
 
 ```javascript
-exports.openChromTabs = function(args){
-    //var gotoUrl = args.view.bindingContext.url;
-
+exports.whateverYouLike = function(args){
     var opts = {
-            url: args.view.bindingContext.url,
-            toolbarColor: '#ff4081',
-            toolbarControlsColor: '#333', // iOS only
-            showTitle: false // Android only
+        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        toolbarColor: '#ff4081',
+        toolbarControlsColor: '#333', // iOS only
+        showTitle: false, // Android only
+        isClosed: function (res) {
+            console.log('closed it', res);
+        }
     };
-   console.log(args.view.bindingContext.url);
 
    AdvancedWebView.openAdvancedUrl(opts);
 ```
@@ -115,10 +116,10 @@ exports.openChromTabs = function(args){
 - toolbarColor: string
 - toolbarControlsColor: string - ** iOS only **
 - showTitle: boolean - ** Android only **
-- isClosed: Function
+- isClosed: Function - callback when the browser closes
 
 ##### Demo App
 
 - fork the repo
 - cd into the `src` directory
-- execute `npm run demo.android` or `npm run demo.ios` (these cmds are in the package.json `scripts` section of the src if you're curious what is executing)
+- execute `npm run demo.android` or `npm run demo.ios`
