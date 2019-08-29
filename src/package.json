@@ -1,6 +1,6 @@
 {
 	"name": "nativescript-advanced-webview",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"description": "An advanced webview using Chrome CustomTabs on Android and SFSafariViewController on iOS.",
 	"main": "advanced-webview",
 	"typings": "index.d.ts",
