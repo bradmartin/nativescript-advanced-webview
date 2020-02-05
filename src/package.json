@@ -1,73 +1,73 @@
 {
-	"name": "nativescript-advanced-webview",
-	"version": "4.0.1",
-	"description": "An advanced webview using Chrome CustomTabs on Android and SFSafariViewController on iOS.",
-	"main": "advanced-webview",
-	"typings": "index.d.ts",
-	"nativescript": {
-		"platforms": {
-			"android": "2.0.0",
-			"ios": "2.3.0"
-		}
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/bradmartin/nativescript-advanced-webview.git"
-	},
-	"keywords": [
-		"NativeScript",
-		"nativescript-advanced-webview",
-		"Chrome Custom Tabs",
-		"SafariViewController",
-		"Safari",
-		"Chrome",
-		"BradMartin"
-	],
-	"author": {
-		"name": "Brad Martin",
-		"url": "https://github.com/bradmartin",
-		"email": "bradwaynemartin@gmail.com"
-	},
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/bradmartin/nativescript-advanced-webview/issues"
-	},
-	"homepage": "https://github.com/bradmartin/-advanced-webview",
-	"readmeFilename": "README.md",
-	"scripts": {
-		"tsc": "tsc -skipLibCheck",
-		"build": "npm i && tsc",
-		"build.native": "node scripts/build-native.js",
-		"tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\"",
-		"setup": "npm i && tsc",
-		"demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios",
-		"demo.android": "npm i && npm run tsc && cd ../demo && tns run android",
-		"ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
-		"generate.typings.ios": "cd ../demo && TNS_DEBUG_METADATA_PATH=\"$(pwd)/metadata\" tns build ios && TNS_TYPESCRIPT_DECLARATIONS_PATH=\"$(pwd)/typings\" tns build ios && echo 'Now look for your library typings in demo/typings!'",
-		"prepack": "npm run build.native",
-		"make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-advanced-webview --token=<TOKEN>"
-	},
-	"lint-staged": {
-		"**/*.{js, css, ts, json, scss, html, xml, md}": [
-			"prettier --write",
-			"git add"
-		]
-	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"devDependencies": {
-		"husky": "^3.0.4",
-		"lint-staged": "^9.2.5",
-		"prettier": "^1.18.2",
-		"tns-core-modules": "^6.0.7",
-		"tns-platform-declarations": "^6.0.7",
-		"typescript": "~3.5.3",
-		"prompt": "^1.0.0",
-		"rimraf": "^2.5.0",
-		"tslint": "^5.19.0",
-		"semver": "^6.3.0"
-	}
+  "name": "nativescript-advanced-webview",
+  "version": "5.0.0",
+  "description": "An advanced webview using Chrome CustomTabs on Android and SFSafariViewController on iOS.",
+  "main": "advanced-webview",
+  "typings": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "android": "2.0.0",
+      "ios": "2.3.0"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bradmartin/nativescript-advanced-webview.git"
+  },
+  "keywords": [
+    "NativeScript",
+    "nativescript-advanced-webview",
+    "Chrome Custom Tabs",
+    "SafariViewController",
+    "Safari",
+    "Chrome",
+    "BradMartin"
+  ],
+  "author": {
+    "name": "Brad Martin",
+    "url": "https://github.com/bradmartin",
+    "email": "bradwaynemartin@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bradmartin/nativescript-advanced-webview/issues"
+  },
+  "homepage": "https://github.com/bradmartin/-advanced-webview",
+  "readmeFilename": "README.md",
+  "scripts": {
+    "tsc": "tsc -skipLibCheck",
+    "build": "npm i && tsc",
+    "build.native": "node scripts/build-native.js",
+    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\" --exclude \"*demo*/platforms/**\"",
+    "setup": "npm i && tsc",
+    "demo.ios": "npm i && npm run tsc && cd ../demo && tns run ios",
+    "demo.android": "npm i && npm run tsc && cd ../demo && tns run android",
+    "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**'",
+    "generate.typings.ios": "cd ../demo && TNS_DEBUG_METADATA_PATH=\"$(pwd)/metadata\" tns build ios && TNS_TYPESCRIPT_DECLARATIONS_PATH=\"$(pwd)/typings\" tns build ios && echo 'Now look for your library typings in demo/typings!'",
+    "prepack": "npm run build.native",
+    "make-changelog": "cd ../ && github_changelog_generator -u bradmartin -p nativescript-advanced-webview --token=<TOKEN>"
+  },
+  "lint-staged": {
+    "**/*.{js, css, ts, json, scss, html, xml, md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "tns-core-modules": "^6.3.2",
+    "tns-platform-declarations": "^6.3.2",
+    "typescript": "~3.7.5",
+    "prompt": "^1.0.0",
+    "rimraf": "^2.5.0",
+    "tslint": "^6.0.0",
+    "semver": "^6.3.0"
+  }
 }
