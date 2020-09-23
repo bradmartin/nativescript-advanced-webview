@@ -1,7 +1,8 @@
-import { AdvancedWebViewOptions, openAdvancedUrl } from 'nativescript-advanced-webview';
-import { Observable } from 'tns-core-modules/data/observable';
-import { isIOS } from 'tns-core-modules/platform';
-import { Page } from 'tns-core-modules/ui/page';
+import { isIOS, Observable, Page } from '@nativescript/core';
+import {
+  AdvancedWebViewOptions,
+  openAdvancedUrl
+} from 'nativescript-advanced-webview';
 
 export class HelloWorldModel extends Observable {
   public openUrlButtonText: string;
@@ -19,7 +20,7 @@ export class HelloWorldModel extends Observable {
   public onTap() {
     try {
       const opt: AdvancedWebViewOptions = {
-        url: 'https://bradmartin.net',
+        url: 'https://nativescript.org',
         showTitle: false,
         toolbarColor: '#ff9999',
         toolbarControlsColor: '#fff',

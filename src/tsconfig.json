@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "target": "es2017",
+    "module": "esnext",
+    "moduleResolution": "node",
     "noEmitOnError": false,
     "noEmitHelpers": true,
     "sourceMap": false,
@@ -8,15 +11,19 @@
     "experimentalDecorators": true,
     "noLib": false,
     "emitDecoratorMetadata": true,
-    "target": "es5",
-    "module": "commonjs",
     "lib": ["es6", "dom"],
     "skipLibCheck": true,
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
       "*": ["./node_modules/tns-core-modules/*", "./node_modules/*"]
-    }
+    },
+    "plugins": [
+      {
+        "transform": "@nativescript/webpack/transformers/ns-transform-native-classes",
+        "type": "raw"
+      }
+    ]
   },
   "exclude": ["node_modules"],
   "include": [

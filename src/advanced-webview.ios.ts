@@ -1,13 +1,8 @@
-/**********************************************************************************
- * (c) 2016, Brad Martin.
- * Licensed under the MIT license.
- *
- * Version 3.0.0                                          bradwaynemartin@gmail.com
- **********************************************************************************/
+import { Color } from '@nativescript/core';
 
-import { Color } from 'tns-core-modules/color';
-
-class SFSafariViewControllerDelegateImpl extends NSObject
+@NativeClass()
+class SFSafariViewControllerDelegateImpl
+  extends NSObject
   implements SFSafariViewControllerDelegate {
   public static ObjCProtocols = [SFSafariViewControllerDelegate];
 

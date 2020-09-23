@@ -1,19 +1,15 @@
-/**********************************************************************************
- * (c) 2016, Brad Martin.
- * Licensed under the MIT license.
- *
- * Version 3.0.0                                          bradwaynemartin@gmail.com
- **********************************************************************************/
-
-import * as app from 'tns-core-modules/application';
-import { Color } from 'tns-core-modules/color';
-import { ad as androidUtils } from 'tns-core-modules/utils/utils';
+import {
+  AndroidApplication,
+  Application,
+  Color,
+  Utils
+} from '@nativescript/core';
 
 const REQUEST_CODE = 1868;
 
 export function init() {
   (co.fitcom.fancywebview.AdvancedWebView as any).AdvancedWebViewStatics.init(
-    androidUtils.getApplicationContext(),
+    Utils.android.getApplicationContext(),
     true
   );
 }
@@ -22,20 +18,24 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   if (!options.url) {
     throw new Error('No url set in the Advanced WebView Options object.');
   }
-  app.android.on(app.AndroidApplication.activityResultEvent, (args: any) => {
-    const requestCode = args.requestCode;
-    const resultCode = args.resultCode;
-    if (requestCode === REQUEST_CODE) {
-      if (resultCode === android.app.Activity.RESULT_CANCELED) {
-        if (options.isClosed && typeof options.isClosed === 'function') {
-          options.isClosed(true);
+  Application.android.on(
+    AndroidApplication.activityResultEvent,
+    (args: any) => {
+      const requestCode = args.requestCode;
+      const resultCode = args.resultCode;
+      if (requestCode === REQUEST_CODE) {
+        if (resultCode === android.app.Activity.RESULT_CANCELED) {
+          if (options.isClosed && typeof options.isClosed === 'function') {
+            options.isClosed(true);
+          }
+          Application.android.off(AndroidApplication.activityResultEvent);
         }
-        app.android.off(app.AndroidApplication.activityResultEvent);
       }
     }
-  });
+  );
 
-  const activity = app.android.startActivity || app.android.foregroundActivity;
+  const activity =
+    Application.android.startActivity || Application.android.foregroundActivity;
 
   const i = new co.fitcom.fancywebview.AdvancedWebViewListener({
     onCustomTabsServiceConnected(
@@ -43,7 +43,7 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
       client: any
     ) {},
     onServiceDisconnected(componentName: android.content.ComponentName) {},
-    onNavigationEvent: function(
+    onNavigationEvent: function (
       navigationEvent: number,
       extras: android.os.Bundle
     ) {

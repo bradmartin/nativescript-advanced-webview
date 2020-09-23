@@ -15,13 +15,23 @@ An advanced webview using <a href="https://developer.chrome.com/multidevice/andr
     <a href="https://github.com/bradmartin/nativescript-advanced-webview/stargazers">
         <img src="https://img.shields.io/github/stars/bradmartin/nativescript-advanced-webview.svg" alt="stars">
     </a>
-     <a href="https://github.com/bradmartin/nativescript-advanced-webview/network">
-        <img src="https://img.shields.io/github/forks/bradmartin/nativescript-advanced-webview.svg" alt="forks">
-    </a>
-    <a href="https://github.com/bradmartin/nativescript-advanced-webview/blob/master/LICENSE.md">
-        <img src="https://img.shields.io/github/license/bradmartin/nativescript-advanced-webview.svg" alt="license">
-    </a>
 </p>
+
+## Installation
+
+To install execute:
+
+#### NativeScript 7+:
+
+```bash
+ns plugin add nativescript-advanced-webview
+```
+
+#### NativeScript < 7:
+
+```bash
+tns plugin add nativescript-advanced-webview@5.0.0
+```
 
 [Here is a video](https://youtu.be/LVseK_CZp5g) showing off Chrome CustomTabs in NativeScript.
 
@@ -42,14 +52,6 @@ An advanced webview using <a href="https://developer.chrome.com/multidevice/andr
 | Android                                   | iOS                                             |
 | ----------------------------------------- | ----------------------------------------------- |
 | ![Android Sample](screens/chromeTabs.gif) | ![iOS Sample](screens/safariViewController.gif) |
-
-## Installation
-
-To install execute
-
-```
-tns plugin add nativescript-advanced-webview
-```
 
 ## Example
 
