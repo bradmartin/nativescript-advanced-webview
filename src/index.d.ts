@@ -8,28 +8,35 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void;
 export function init(): void;
 
 export interface AdvancedWebViewOptions {
-	/**
-	 * The url of the site to open.
-	 */
-	url: string;
+  /**
+   * The url of the site to open.
+   */
+  url: string;
 
-	/**
-	 * The color of the toolbar.
-	 */
-	toolbarColor?: string;
+  /**
+   * The color of the toolbar.
+   */
+  toolbarColor?: string;
 
-	/**
-	 * Set true to show the site title. *** ANDROID ONLY ***
-	 */
-	showTitle?: boolean;
+  /**
+   * Set true to show the site title. *** ANDROID ONLY ***
+   */
+  showTitle?: boolean;
 
-	/**
-	 * The color of the toolbar controls. *** iOS ONLY ***
-	 */
-	toolbarControlsColor?: string;
+  /**
+   * The color of the toolbar controls. *** iOS ONLY ***
+   */
+  toolbarControlsColor?: string;
 
-	/**
-	 * Callback for when the webview is closed
-	 */
-	isClosed?: Function;
+  /**
+   * Callback for when the webview is closed
+   */
+  isClosed?: Function;
+
+  ios: {
+    /**
+     * The UIViewController to present from.
+     */
+    viewController: UIViewController;
+  };
 }
