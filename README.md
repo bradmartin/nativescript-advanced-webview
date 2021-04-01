@@ -76,6 +76,9 @@ public whateverYouLike() {
         showTitle: false, // Android only
         isClosed: (res) => {
             console.log('closed it', res);
+        },
+        ios: {
+            viewController: // some viewcontroller to present from on iOS
         }
     };
 
@@ -102,6 +105,9 @@ exports.whateverYouLike = function(args){
         showTitle: false, // Android only
         isClosed: function (res) {
             console.log('closed it', res);
+        },
+         ios: {
+            viewController: // some viewcontroller to present from on iOS
         }
     };
 
