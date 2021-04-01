@@ -65,11 +65,14 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
 
   const animated = true;
   const completionHandler = null;
-  app.keyWindow.rootViewController.presentViewControllerAnimatedCompletion(
+  let ctrl = app.keyWindow.rootViewController;
+  if (options.viewController) ctrl = options.viewController;
+  ctrl.presentViewControllerAnimatedCompletion(
     sfc,
     animated,
     completionHandler
   );
+
 }
 
 export interface AdvancedWebViewOptions {
@@ -78,4 +81,5 @@ export interface AdvancedWebViewOptions {
   toolbarColor?: string;
   toolbarControlsColor?: string;
   isClosed?: Function;
+  viewController?: UIViewController;
 }
