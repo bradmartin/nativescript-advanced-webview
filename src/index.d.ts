@@ -33,10 +33,10 @@ export interface AdvancedWebViewOptions {
    */
   isClosed?: Function;
 
-  ios: {
+  ios?: {
     /**
      * The UIViewController to present from.
      */
-    viewController: UIViewController;
+    viewController?: UIViewController;
   };
 }
