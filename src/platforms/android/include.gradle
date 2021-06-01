@@ -10,6 +10,6 @@ repositories {
 }
 
 dependencies {
-	implementation 'com.github.triniwiz:fancy-advanced-webview:a9359d17f0'
+	implementation 'com.github.jamesroome:fancy-advanced-webview:d786e0a'
     implementation 'androidx.browser:browser:1.2.0'
 }
