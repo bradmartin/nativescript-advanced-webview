@@ -65,66 +65,59 @@ init();
 ```
 
 ```typescript
-import { openAdvancedUrl, AdvancedWebViewOptions } from 'nativescript-advanced-webview';
+import {
+  AdvancedWebviewEvents,
+  AdvancedWebViewOptions,
+  init,
+  NSAdvancedWebViewEventEmitter,
+  openAdvancedUrl
+} from 'nativescript-advanced-webview';
 
-public whateverYouLike() {
+function whateverYouLike() {
+  NSAdvancedWebViewEventEmitter.once(AdvancedWebviewEvents.LoadStarted, () => {
+    console.log('LOAD STARTED');
+  });
 
-    const opts: AdvancedWebViewOptions = {
-        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        toolbarColor: '#ff4081',
-        toolbarControlsColor: '#333', // iOS only
-        showTitle: false, // Android only
-        isClosed: (res) => {
-            console.log('closed it', res);
-        },
-        ios: {
-            viewController: // some viewcontroller to present from on iOS
-        }
-    };
+  NSAdvancedWebViewEventEmitter.once(AdvancedWebviewEvents.LoadFinished, () => {
+    console.log('LOAD FINISHED');
+  });
 
-    openAdvancedUrl(opts);
+  NSAdvancedWebViewEventEmitter.once(AdvancedWebviewEvents.LoadError, () => {
+    console.log('LOAD ERROR');
+  });
+
+  NSAdvancedWebViewEventEmitter.once(AdvancedWebviewEvents.Closed, () => {
+    console.log('CLOSED');
+  });
+
+  const opts: AdvancedWebViewOptions = {
+    url: 'https://nativescript.org',
+    showTitle: true,
+    toolbarColor: '#336699',
+    toolbarControlsColor: '#fff'
+  };
+
+  openAdvancedUrl(opts);
 }
-```
-
-#### Javascript
-
-Initiate the service before the app starts e.g app.ts, main.ts
-
-```javascript
-var AdvancedWebView = require('nativescript-advanced-webview');
-
-AdvancedWebView.init();
-```
-
-```javascript
-exports.whateverYouLike = function(args){
-    var opts = {
-        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-        toolbarColor: '#ff4081',
-        toolbarControlsColor: '#333', // iOS only
-        showTitle: false, // Android only
-        isClosed: function (res) {
-            console.log('closed it', res);
-        },
-         ios: {
-            viewController: // some viewcontroller to present from on iOS
-        }
-    };
-
-   AdvancedWebView.openAdvancedUrl(opts);
 ```
 
 ### API
 
 - openAdvancedUrl(options: AdvancedWebViewOptions)
 
-##### AdvancedWebViewOptions Properties
+#### Events
+
+- LoadStart
+- LoadFinished
+- LoadError
+- Closed
+
+#### AdvancedWebViewOptions Properties
 
 - url: string
 - toolbarColor: string
 - toolbarControlsColor: string - ** iOS only **
 - showTitle: boolean - ** Android only **
-- isClosed: Function - callback when the browser closes
 
 ##### Demo App
 

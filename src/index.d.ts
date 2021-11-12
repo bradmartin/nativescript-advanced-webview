@@ -1,3 +1,6 @@
+import { Observable } from '@nativescript/core';
+export declare const NSAdvancedWebViewEventEmitter: Observable;
+
 /**
  * Open the Advanced WebView - Safari on iOS and Chrome on Android.
  * If the browser is not installed on the device, it should fall back to a webview.
@@ -28,15 +31,17 @@ export interface AdvancedWebViewOptions {
    */
   toolbarControlsColor?: string;
 
-  /**
-   * Callback for when the webview is closed
-   */
-  isClosed?: Function;
-
   ios?: {
     /**
      * The UIViewController to present from.
      */
     viewController?: UIViewController;
   };
+}
+
+export declare enum AdvancedWebviewEvents {
+  LoadStarted = 'LoadStarted',
+  LoadFinished = 'LoadFinished',
+  LoadError = 'LoadError',
+  Closed = 'Closed'
 }
