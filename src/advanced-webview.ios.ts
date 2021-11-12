@@ -1,9 +1,14 @@
-import { Color } from '@nativescript/core';
+import { Color, Frame, Observable } from '@nativescript/core';
+import { AdvancedWebviewEvents } from './interfaces';
+
+export { AdvancedWebviewEvents } from './interfaces';
+export const NSAdvancedWebViewEventEmitter = new Observable();
 
 @NativeClass()
 class SFSafariViewControllerDelegateImpl
   extends NSObject
-  implements SFSafariViewControllerDelegate {
+  implements SFSafariViewControllerDelegate
+{
   public static ObjCProtocols = [SFSafariViewControllerDelegate];
 
   private _owner: WeakRef<any>;
@@ -20,20 +25,27 @@ class SFSafariViewControllerDelegateImpl
     return delegate;
   }
 
+  /**
+   * Tells the delegate that the initial URL load completed.
+   * @param controller
+   * @param didLoadSuccessfully
+   */
   safariViewControllerDidCompleteInitialLoad(
     controller: SFSafariViewController,
     didLoadSuccessfully: boolean
   ): void {
-    console.log(
-      'Delegate, safariViewControllerDidCompleteInitialLoad: ' +
-        didLoadSuccessfully
-    );
+    NSAdvancedWebViewEventEmitter.notify({
+      eventName: AdvancedWebviewEvents.LoadFinished
+    });
   }
 
+  /**
+   * Tells the delegate that the user dismissed the view.
+   */
   safariViewControllerDidFinish(controller: SFSafariViewController): void {
-    if (this._callback && typeof this._callback === 'function') {
-      this._callback(true);
-    }
+    NSAdvancedWebViewEventEmitter.notify({
+      eventName: AdvancedWebviewEvents.Closed
+    });
   }
 }
 
@@ -65,13 +77,21 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
 
   const animated = true;
   const completionHandler = null;
-  let ctrl = app.keyWindow.rootViewController;
-  if (options.ios?.viewController) ctrl = options.ios.viewController;
+
+  let ctrl = Frame.topmost().viewController;
+  if (options.ios?.viewController) {
+    ctrl = options.ios.viewController;
+  }
+
   ctrl.presentViewControllerAnimatedCompletion(
     sfc,
     animated,
     completionHandler
   );
+
+  NSAdvancedWebViewEventEmitter.notify({
+    eventName: AdvancedWebviewEvents.LoadStarted
+  });
 }
 
 export interface AdvancedWebViewOptions {
