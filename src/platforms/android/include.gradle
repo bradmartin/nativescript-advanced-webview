@@ -11,5 +11,6 @@ repositories {
 
 dependencies {
 	implementation 'com.github.triniwiz:fancy-advanced-webview:a9359d17f0'
-    implementation 'androidx.browser:browser:1.2.0'
+    implementation 'androidx.browser:browser:1.3.0'
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:1.3.2'
 }

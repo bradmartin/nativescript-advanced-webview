@@ -24,13 +24,6 @@ export class HelloWorldModel extends Observable {
 
   public onTap() {
     try {
-      const opt: AdvancedWebViewOptions = {
-        url: 'https://twitter.com',
-        showTitle: true,
-        toolbarColor: '#000',
-        toolbarControlsColor: '#fff'
-      };
-
       NSAdvancedWebViewEventEmitter.once(
         AdvancedWebviewEvents.LoadStarted,
         () => {
@@ -45,11 +38,25 @@ export class HelloWorldModel extends Observable {
         }
       );
 
+      NSAdvancedWebViewEventEmitter.once(
+        AdvancedWebviewEvents.LoadError,
+        () => {
+          console.log('LOAD ERROR');
+        }
+      );
+
       NSAdvancedWebViewEventEmitter.once(AdvancedWebviewEvents.Closed, () => {
         console.log('CLOSED');
       });
 
-      openAdvancedUrl(opt);
+      const opts: AdvancedWebViewOptions = {
+        url: 'https://twitter.com',
+        showTitle: true,
+        toolbarColor: '#336699',
+        toolbarControlsColor: '#fff'
+      };
+
+      openAdvancedUrl(opts);
     } catch (error) {
       console.log(error);
     }

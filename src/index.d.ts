@@ -42,5 +42,6 @@ export interface AdvancedWebViewOptions {
 export declare enum AdvancedWebviewEvents {
   LoadStarted = 'LoadStarted',
   LoadFinished = 'LoadFinished',
+  LoadError = 'LoadError',
   Closed = 'Closed'
 }

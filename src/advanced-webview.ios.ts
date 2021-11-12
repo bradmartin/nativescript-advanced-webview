@@ -1,5 +1,5 @@
 import { Color, Frame, Observable } from '@nativescript/core';
-import { AdvancedWebviewEvents } from './interfaces';
+import { AdvancedWebviewEvents, AdvancedWebViewOptions } from './interfaces';
 
 export { AdvancedWebviewEvents } from './interfaces';
 export const NSAdvancedWebViewEventEmitter = new Observable();
@@ -34,9 +34,15 @@ class SFSafariViewControllerDelegateImpl
     controller: SFSafariViewController,
     didLoadSuccessfully: boolean
   ): void {
-    NSAdvancedWebViewEventEmitter.notify({
-      eventName: AdvancedWebviewEvents.LoadFinished
-    });
+    if (didLoadSuccessfully === true) {
+      NSAdvancedWebViewEventEmitter.notify({
+        eventName: AdvancedWebviewEvents.LoadFinished
+      });
+    } else {
+      NSAdvancedWebViewEventEmitter.notify({
+        eventName: AdvancedWebviewEvents.LoadError
+      });
+    }
   }
 
   /**
@@ -70,7 +76,7 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
 
   sfc.delegate = SFSafariViewControllerDelegateImpl.initWithOwnerCallback(
     new WeakRef({}),
-    options.isClosed
+    null
   );
 
   const app = UIApplication.sharedApplication;
@@ -92,15 +98,4 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   NSAdvancedWebViewEventEmitter.notify({
     eventName: AdvancedWebviewEvents.LoadStarted
   });
-}
-
-export interface AdvancedWebViewOptions {
-  url: string;
-  showTitle?: boolean;
-  toolbarColor?: string;
-  toolbarControlsColor?: string;
-  isClosed?: Function;
-  ios?: {
-    viewController?: UIViewController;
-  };
 }
