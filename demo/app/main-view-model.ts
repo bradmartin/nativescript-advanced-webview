@@ -50,7 +50,7 @@ export class HelloWorldModel extends Observable {
       });
 
       const opts: AdvancedWebViewOptions = {
-        url: 'https://twitter.com',
+        url: 'https://nativescript.org',
         showTitle: true,
         toolbarColor: '#336699',
         toolbarControlsColor: '#fff'
