@@ -104,13 +104,7 @@ function whateverYouLike() {
 ### API
 
 - openAdvancedUrl(options: AdvancedWebViewOptions)
-
-#### Events
-
-- LoadStart
-- LoadFinished
-- LoadError
-- Closed
+- close() _ iOS Only _ :: Closed the safari view controller.
 
 #### AdvancedWebViewOptions Properties
 
@@ -118,6 +112,13 @@ function whateverYouLike() {
 - toolbarColor: string
 - toolbarControlsColor: string - ** iOS only **
 - showTitle: boolean - ** Android only **
+
+#### Events
+
+- LoadStart
+- LoadFinished
+- LoadError
+- Closed
 
 ##### Demo App
 

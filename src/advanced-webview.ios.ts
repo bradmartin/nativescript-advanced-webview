@@ -4,6 +4,8 @@ import { AdvancedWebviewEvents, AdvancedWebViewOptions } from './interfaces';
 export { AdvancedWebviewEvents } from './interfaces';
 export const NSAdvancedWebViewEventEmitter = new Observable();
 
+let ctrl: UIViewController;
+
 @NativeClass()
 class SFSafariViewControllerDelegateImpl
   extends NSObject
@@ -79,23 +81,20 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
     null
   );
 
-  const app = UIApplication.sharedApplication;
-
-  const animated = true;
-  const completionHandler = null;
-
-  let ctrl = Frame.topmost().viewController;
+  ctrl = Frame.topmost().viewController;
   if (options.ios?.viewController) {
     ctrl = options.ios.viewController;
   }
 
-  ctrl.presentViewControllerAnimatedCompletion(
-    sfc,
-    animated,
-    completionHandler
-  );
+  ctrl.presentViewControllerAnimatedCompletion(sfc, true, null);
 
   NSAdvancedWebViewEventEmitter.notify({
     eventName: AdvancedWebviewEvents.LoadStarted
   });
+}
+
+export function close() {
+  if (ctrl) {
+    ctrl.dismissModalViewControllerAnimated(true);
+  }
 }

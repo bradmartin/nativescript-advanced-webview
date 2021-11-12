@@ -97,3 +97,7 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   wv.setBuilder(intentBuilder);
   wv.loadUrl(options.url);
 }
+
+export function close() {
+  // not implemented yet - need to research approaches
+}
