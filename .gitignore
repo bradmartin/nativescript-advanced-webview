@@ -30,3 +30,4 @@ node_modules
 /demo/hooks/
 node_modules/
 .settings/
+!karma.conf.js
