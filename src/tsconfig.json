@@ -15,12 +15,9 @@
     "skipLibCheck": true,
     "rootDir": ".",
     "baseUrl": ".",
-    "paths": {
-      "*": ["./node_modules/tns-core-modules/*", "./node_modules/*"]
-    },
     "plugins": [
       {
-        "transform": "@nativescript/webpack/transformers/ns-transform-native-classes",
+        "transform": "@nativescript/webpack/dist/transformers/NativeClass",
         "type": "raw"
       }
     ]
