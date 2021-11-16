@@ -17,6 +17,7 @@
     "noImplicitReturns": true,
     "noImplicitUseStrict": false,
     "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "*": ["./node_modules/*"],

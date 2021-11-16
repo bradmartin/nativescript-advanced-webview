@@ -3,7 +3,7 @@ module.exports = function (config) {
   const options = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: 'app',
+    basePath: 'src',
 
 
     // frameworks to use
