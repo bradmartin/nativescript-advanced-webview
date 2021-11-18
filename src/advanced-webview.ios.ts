@@ -57,7 +57,9 @@ class SFSafariViewControllerDelegateImpl
   }
 }
 
-export function init() {}
+export function init() {
+  console.log('init not needed on iOS.');
+}
 
 export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   if (!options.url) {

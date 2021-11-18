@@ -18,6 +18,6 @@
       "nativescript-advanced-webview/*": ["../src/*"],
     }
   },
-  "include": ["src/**/*.ts", "../src/**/*.ts"],
+  "include": ["src/test.ts", "../src/**/*.ts"],
   "exclude": ["node_modules", "platforms", "e2e"]
 }
