@@ -9,21 +9,8 @@ module.exports = env => {
   webpack.chainWebpack(config => {
     config.module
       .rule('istanbul-loader')
-      .enforce('post')
       .include
-      .add(webpack.Utils.platform.getEntryDirPath())
-      .add(join(webpack.Utils.project.getProjectRootPath(), '..', 'src'))
-      .end()
-      .exclude
-      .add(/\.spec\.ts$/)
-      .add(/tests\/.*\.ts$/)
-      .add(join(webpack.Utils.platform.getEntryDirPath(), 'test.ts'))
-      .add(join(webpack.Utils.platform.getEntryDirPath(), 'test.js'))
-      .end()
-      .test(/\.(ts|js)/)
-      .use('@jsdevtools/coverage-istanbul-loader')
-      .loader(require.resolve('@jsdevtools/coverage-istanbul-loader'))
-      .options({ esModules: true });
+      .add(join(webpack.Utils.project.getProjectRootPath(), '..', 'src'));
   });
 
   return webpack.resolveConfig();
