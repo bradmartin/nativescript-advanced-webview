@@ -22,9 +22,10 @@
   "devDependencies": {
     "@angular/compiler-cli": "^12.2.0",
     "@jsdevtools/coverage-istanbul-loader": "^3.0.5",
+    "@nativescript/android": "8.1.1",
     "@nativescript/ios": "8.1.0",
     "@nativescript/types": "~8.1.1",
-    "@nativescript/unit-test-runner": "^2.0.5",
+    "@nativescript/unit-test-runner": "file:../../nativescript-unit-test-runner/nativescript-unit-test-runner-2.0.5.tgz",
     "@nativescript/webpack": "~5.0.0",
     "@ngtools/webpack": "^12.2.0",
     "@types/jasmine": "3.10.2",

@@ -13,6 +13,7 @@ android {
   defaultConfig {
     minSdkVersion 17
     generatedDensities = []
+    manifestPlaceholders = [isUnitTesting:"${unitTesting}"]
   }
   aaptOptions {
     additionalParameters "--no-version-vectors"
