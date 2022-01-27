@@ -5,6 +5,7 @@ export { AdvancedWebviewEvents } from './interfaces';
 export const NSAdvancedWebViewEventEmitter = new Observable();
 
 let ctrl: UIViewController;
+let delegate: SFSafariViewControllerDelegateImpl;
 
 @NativeClass()
 class SFSafariViewControllerDelegateImpl
@@ -54,10 +55,13 @@ class SFSafariViewControllerDelegateImpl
     NSAdvancedWebViewEventEmitter.notify({
       eventName: AdvancedWebviewEvents.Closed
     });
+    delegate = null;
   }
 }
 
-export function init() {}
+export function init() {
+  console.log('init not needed on iOS.');
+}
 
 export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   if (!options.url) {
@@ -76,10 +80,11 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
     sfc.preferredControlTintColor = new Color(options.toolbarControlsColor).ios;
   }
 
-  sfc.delegate = SFSafariViewControllerDelegateImpl.initWithOwnerCallback(
+  delegate = SFSafariViewControllerDelegateImpl.initWithOwnerCallback(
     new WeakRef({}),
     null
   );
+  sfc.delegate = delegate;
 
   ctrl = Frame.topmost().viewController;
   if (options.ios?.viewController) {

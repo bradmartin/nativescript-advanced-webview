@@ -1,4 +1,5 @@
 const webpack = require('@nativescript/webpack');
+const { join } = require('path');
 
 module.exports = env => {
   webpack.init(env);
@@ -8,13 +9,8 @@ module.exports = env => {
   webpack.chainWebpack(config => {
     config.module
       .rule('istanbul-loader')
-      .enforce('post')
-      .include.add(webpack.Utils.platform.getEntryDirPath())
-      .end()
-      .test(/\.(ts|js)/)
-      .use('@jsdevtools/coverage-istanbul-loader')
-      .loader(require.resolve('@jsdevtools/coverage-istanbul-loader'))
-      .options({ esModules: true });
+      .include
+      .add(join(webpack.Utils.project.getProjectRootPath(), '..', 'src'));
   });
 
   return webpack.resolveConfig();

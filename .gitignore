@@ -30,3 +30,5 @@ node_modules
 /demo/hooks/
 node_modules/
 .settings/
+coverage/
+!karma.conf.js

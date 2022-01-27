@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "es2017",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noEmitHelpers": true,
+    "noEmitOnError": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "lib": ["es2017", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"],
+      "@/*": ["src/*"],
+      "nativescript-advanced-webview": ["../src"],
+      "nativescript-advanced-webview/*": ["../src/*"],
+    }
+  },
+  "include": ["src/test.ts", "../src/**/*.ts"],
+  "exclude": ["node_modules", "platforms", "e2e"]
+}
