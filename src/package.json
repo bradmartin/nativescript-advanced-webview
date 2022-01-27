@@ -35,6 +35,7 @@
   "homepage": "https://github.com/bradmartin/-advanced-webview",
   "readmeFilename": "README.md",
   "scripts": {
+    "clean": "npx rimraf node_modules package-lock.json && npm i",
     "tsc": "tsc -skipLibCheck",
     "build": "npm i && ts-patch install && tsc",
     "build.native": "node scripts/build-native.js",
