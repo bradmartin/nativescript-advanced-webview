@@ -1,4 +1,5 @@
-import { Color, Frame, Observable } from '@nativescript/core';
+import { Color, Observable } from '@nativescript/core';
+import { getRootView } from '@nativescript/core/application';
 import { AdvancedWebviewEvents, AdvancedWebViewOptions } from './interfaces';
 
 export { AdvancedWebviewEvents } from './interfaces';
@@ -86,7 +87,7 @@ export function openAdvancedUrl(options: AdvancedWebViewOptions): void {
   );
   sfc.delegate = delegate;
 
-  ctrl = Frame.topmost().viewController;
+  ctrl = getRootView().viewController as UIViewController;
   if (options.ios?.viewController) {
     ctrl = options.ios.viewController;
   }
