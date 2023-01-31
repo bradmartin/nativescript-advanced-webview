@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "ES2020",
     "module": "esnext",
+    "lib": ["ESNext", "dom"],
     "moduleResolution": "node",
     "noEmitOnError": false,
     "noEmitHelpers": true,
@@ -11,7 +12,6 @@
     "experimentalDecorators": true,
     "noLib": false,
     "emitDecoratorMetadata": true,
-    "lib": ["es6", "dom"],
     "skipLibCheck": true,
     "rootDir": ".",
     "baseUrl": ".",
