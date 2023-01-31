@@ -72,6 +72,7 @@ import {
   NSAdvancedWebViewEventEmitter,
   openAdvancedUrl
 } from 'nativescript-advanced-webview';
+import { getRootView } from '@nativescript/core/application';
 
 function whateverYouLike() {
   NSAdvancedWebViewEventEmitter.once(AdvancedWebviewEvents.LoadStarted, () => {
@@ -94,7 +95,10 @@ function whateverYouLike() {
     url: 'https://nativescript.org',
     showTitle: true,
     toolbarColor: '#336699',
-    toolbarControlsColor: '#fff'
+    toolbarControlsColor: '#fff',
+    ios: {
+        viewController: getRootView().viewController
+    }
   };
 
   openAdvancedUrl(opts);
